@@ -1,204 +1,493 @@
 <div class="pagina-full" id="wrapper">
-    <app-submenu></app-submenu>
-    <ngx-skeleton-loader count="1" *ngIf="loader" animation="progress" appearance="circle" [theme]="{ 'width':'100%','height':'430px','border-radius': '10px','padding':'15px' }"></ngx-skeleton-loader>
-    <div class="container">
-        <ngx-skeleton-loader class="d-flex pt-3 pb-3" count="2" *ngIf="loader" animation="progress" appearance="circle" [theme]="{ 'width':'100%','height':'250px','border-radius': '10px' }"></ngx-skeleton-loader>
-        <ngx-skeleton-loader class="pb-3" count="1" *ngIf="loader" animation="progress" appearance="circle" [theme]="{ 'width':'100%','height':'430px','border-radius': '10px','padding':'15px' }"></ngx-skeleton-loader>
+  <app-submenu></app-submenu>
+  <ngx-skeleton-loader
+    count="1"
+    *ngIf="loader"
+    animation="progress"
+    appearance="circle"
+    [theme]="{
+      width: '100%',
+      height: '430px',
+      'border-radius': '10px',
+      padding: '15px'
+    }"
+  ></ngx-skeleton-loader>
+  <div class="container">
+    <ngx-skeleton-loader
+      class="d-flex pt-3 pb-3"
+      count="2"
+      *ngIf="loader"
+      animation="progress"
+      appearance="circle"
+      [theme]="{ width: '100%', height: '250px', 'border-radius': '10px' }"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      class="pb-3"
+      count="1"
+      *ngIf="loader"
+      animation="progress"
+      appearance="circle"
+      [theme]="{
+        width: '100%',
+        height: '430px',
+        'border-radius': '10px',
+        padding: '15px'
+      }"
+    ></ngx-skeleton-loader>
+  </div>
+  <div class="onecheck-page" *ngIf="!loader">
+    <div
+      class="sec1-principal-onecheck"
+      *ngIf="data.banner"
+      style="background:url('{{ data.imagen_de_fondo_entre_secciones }}');"
+    >
+      <div
+        class="seccion1-onecheck pt-5 pb-1 position-relative"
+        style="background:url('{{ data.banner.fondo }}');"
+      >
+        <div class="container">
+          <div class="row mb-5 pt-4 pb-4">
+            <div class="col-md-5 mt-3">
+              <h2
+                class="size63 letter-spacing-1-52 line-height-66 font-weight-700 text-white ubuntu"
+                [innerHTML]="data.banner.texto | safeHtml: 'html'"
+              ></h2>
+              <p
+                class="size22 font-weight-500 text-white letter-spacing-1-24 line-height-31"
+                [innerHTML]="data.banner.descripcion | safeHtml: 'html'"
+              ></p>
+            </div>
+            <div class="col-md-7">
+              <img
+                class="img-fluid img-phone"
+                [src]="data.banner.imagen"
+                alt="Productividad"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="seccion2-onecheck" *ngIf="data.seccion1">
+        <div class="container">
+          <div class="row pt-3">
+            <div class="col-md-12 mb-5">
+              <h2
+                class="ubuntu font-weight-700 text-orange-onecheck size43 letter-spacing-1-24 line-height-52 text-center"
+              >
+                {{ data.seccion1.titulo }}
+              </h2>
+              <p
+                class="font-weight-300 size22 text-center line-height-31 letter-spacing-091 text-black-intrack"
+                [innerHTML]="data.seccion1.descripcion | safeHtml: 'html'"
+              ></p>
+            </div>
+            <ng-container
+              *ngFor="
+                let funcionalidad of data.seccion1.solucion_digital;
+                let i = index
+              "
+            >
+              <div class="col-md-4 funItem">
+                <div class="funcionalidad mb-2 mr-2 ml-3 p-2 card-zoom">
+                  <div class="row">
+                    <div class="col-md-3 p-0">
+                      <div class="item-img-func pt-4 pb-4">
+                        <img
+                          class="img-fluid"
+                          [src]="funcionalidad.icono"
+                          alt="Funcionalidad"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-9 my-auto">
+                      <p
+                        class="font-weight-300 text-gray size14 line-height-20 mb-0"
+                        [innerHTML]="
+                          funcionalidad.descripcion | safeHtml: 'html'
+                        "
+                      ></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="onecheck-page" *ngIf="!loader">
-        <div class="sec1-principal-onecheck" *ngIf="data.banner" style="background:url('{{ data.imagen_de_fondo_entre_secciones }}');">
-            <div class="seccion1-onecheck pt-5 pb-1 position-relative" style="background:url('{{ data.banner.fondo }}');">
-                <div class="container" >
-                    <div class="row mb-5 pt-4 pb-4">
-                        <div class="col-md-5 mt-3">
-                            <h2 class="size63 letter-spacing-1-52 line-height-66 font-weight-700 text-white ubuntu" [innerHTML]="data.banner.texto | safeHtml: 'html'"></h2> 
-                            <p class="size22 font-weight-500 text-white letter-spacing-1-24 line-height-31" [innerHTML]="data.banner.descripcion | safeHtml: 'html'"></p>
-                        </div>
-                        <div class="col-md-7">
-                            <img class="img-fluid img-phone" [src]="data.banner.imagen" alt="Productividad">
-                        </div>
-                    </div>
-                </div>
-            </div> 
-            <div class="seccion2-onecheck" *ngIf="data.seccion1">
-                <div class="container">
-                    <div class="row pt-3">
-                        <div class="col-md-12 mb-5" >
-                            <h2 class="ubuntu font-weight-700 text-orange-onecheck size43 letter-spacing-1-24 line-height-52 text-center">{{ data.seccion1.titulo }}</h2>
-                            <p class="font-weight-300 size22 text-center line-height-31 letter-spacing-091 text-black-intrack" [innerHTML]="data.seccion1.descripcion | safeHtml: 'html'"></p>
-                        </div>
-                        <ng-container *ngFor="let funcionalidad of data.seccion1.solucion_digital; let i = index">
-                            <div class="col-md-4 funItem">
-                                <div class="funcionalidad mb-2 mr-2 ml-3 p-2 card-zoom">
-                                    <div class="row">
-                                        <div class="col-md-3 p-0">
-                                            <div class="item-img-func pt-4 pb-4">
-                                                <img class="img-fluid" [src]="funcionalidad.icono" alt="Funcionalidad">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-9 my-auto">
-                                            <p class="font-weight-300 text-gray size14 line-height-20 mb-0" [innerHTML]="funcionalidad.descripcion | safeHtml: 'html'"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-container>
-                    </div>
-                </div>
-            </div>
+    <div class="seccion3-onecheck">
+      <div class="container">
+        <div class="row pt-100" *ngIf="data.seccion2">
+          <div
+            class="col-md-6"
+            data-aos="fade-down-left"
+            data-aos-anchor-placement="top-center"
+            data-aos-duration="1000"
+          >
+            <img
+              class="img-fluid"
+              [src]="data.seccion2.imagen"
+              alt="Comercial"
+            />
+          </div>
+          <div
+            class="col-md-6 my-auto"
+            data-aos="fade-down-right"
+            data-aos-anchor-placement="top-center"
+            data-aos-duration="1200"
+          >
+            <h3
+              class="size28 ubuntu line-height-36 mb-2"
+              [innerHTML]="data.seccion2.texto | safeHtml: 'html'"
+            ></h3>
+            <ng-container *ngFor="let icono of data.seccion2.iconos">
+              <ng-container *ngFor="let logo of icono.logo">
+                <img class="card-zoom img-fluid" [src]="logo.url" alt="icono" />
+              </ng-container>
+            </ng-container>
+            <p
+              class="font-weight-300 size18 letter-spacing-05 line-height-36 text-gray mb-0 mt-2"
+            >
+              {{ data.seccion2.titulo_boton }}
+            </p>
+            <a
+              mat-raised-button
+              class="btn-onecheck-fill size15 font-weight-300 w-50 d-block border-radius-12 white-space-normal"
+              [href]="data.seccion2.url_boton"
+              target="blank"
+              >{{ data.seccion2.texto_boton }}</a
+            >
+          </div>
         </div>
-        <div class="seccion3-onecheck">
-            <div class="container">
-                <div class="row pt-100" *ngIf="data.seccion2">
-                    <div class="col-md-6" data-aos="fade-down-left" data-aos-anchor-placement="top-center" data-aos-duration="1000">
-                         <img class="img-fluid" [src]="data.seccion2.imagen" alt="Comercial">
-                    </div>
-                    <div class="col-md-6 my-auto" data-aos="fade-down-right" data-aos-anchor-placement="top-center" data-aos-duration="1200">
-                        <h3 class="size28 ubuntu line-height-36 mb-2" [innerHTML]="data.seccion2.texto | safeHtml: 'html'"></h3>
-                        <ng-container *ngFor="let icono of data.seccion2.iconos">
-                            <ng-container *ngFor="let logo of icono.logo">
-                                <img class="card-zoom img-fluid" [src]="logo.url" alt="icono">
-                            </ng-container>
-                        </ng-container>
-                        <p class="font-weight-300 size18 letter-spacing-05 line-height-36 text-gray mb-0 mt-2">{{ data.seccion2.titulo_boton }}</p>
-                        <a mat-raised-button class="btn-onecheck-fill size15 font-weight-300 w-50 d-block border-radius-12 white-space-normal" [href]="data.seccion2.url_boton" target="blank">{{ data.seccion2.texto_boton }}</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="seccion4-onecheck">
-            <div class="container">
-                <ngx-skeleton-loader class="d-flex pt-3" count="1" *ngIf="loader" animation="progress" appearance="circle" [theme]="{ 'width':'100%','height':'250px','border-radius': '10px' }"></ngx-skeleton-loader>
-                <div class="row pt-100" id="funcionalidades" *ngIf="data.seccion3 && !loader">
-                    <div class="col-md-4 my-auto" data-aos="fade-down-left" data-aos-anchor-placement="top-center" data-aos-duration="1200">
-                        <p class="text-gray letter-spacing-043n line-height-36 size28" [innerHTML]="data.seccion3.descripcion | safeHtml: 'html'"></p>
-                    </div>
-                    <div class="col-md-8" data-aos="fade-down-right" data-aos-anchor-placement="top-center" data-aos-duration="1200">
-                        <div class="back-rombo">
-                            <div class="row">
-                                <ng-container *ngFor="let funcion of data.seccion3.funcionalidades; let i = index; let last = last">
-                                    <div class="col-md-4 funItem2" *ngIf="funcion.descripcion" [ngClass]="{'offset-md-4': last}">
-                                        <mat-card class="card-zoom tarjetas-soluciones border-radius-60 mb-3">
-                                            <img class="mb-1 d-block mx-auto img-fluid" [src]="funcion.icono" alt="Icono 1">
-                                            <mat-card-content>
-                                                <p class="size14 line-height-20 letter-spacing-03n text-center text-gray" [innerHTML]="funcion.descripcion"></p>
-                                            </mat-card-content>
-                                        </mat-card>
-                                    </div>
-                                </ng-container>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-md-12 mb-4" data-aos="fade-top" data-aos-anchor-placement="top-center" data-aos-duration="1000">
-                        <h2 class="size32 text-center ubuntu letter-spacing-1-28 line-height-36 mb-0" [innerHTML]="data.seccion4.titulo | safeHtml: 'html'"></h2>
-                    </div>
-                    <ng-container *ngFor="let gestion of data.seccion4.gestion_de_rondas">
-                        <div class="col" data-aos="fade-down" data-aos-anchor-placement="top-center" data-aos-duration="1200">
-                            <img class="img-fluid d-block mx-auto mb-3" [src]="gestion.icono" alt="Funcionalidad">
-                            <p class="text-center font-weight-500 size14 letter-spacing-05 line-height-20 text-black-intrack" [innerHTML]="gestion.descripcion | safeHtml: 'html'"></p>
-                        </div>
-                    </ng-container>
-                </div>
-            </div>
-            <div class="seccion5-onecheck">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-5" data-aos="fade-down-left" data-aos-anchor-placement="top-center" data-aos-duration="1200">
-                            <img class="img-fluid d-block mx-auto mb-3" [src]="data.seccion5.imagen" alt="Gestión">
-                        </div>
-                        <div class="col-md-7 my-auto" data-aos="fade-down-right" data-aos-anchor-placement="top-center" data-aos-duration="1200">
-                            <p class="text-black-intrack size30 letter-spacing-069 line-height-42" [innerHTML]="data.seccion5.titulo | safeHtml: 'html'"></p>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <a class="w-100 border-radius-11 btn-onecheck-fill2 size15 text-decoration-none mb-2 mt-2" mat-raised-button [href]="data.seccion5.url_boton_1" target="_blank">{{ data.seccion5.texto_boton_1 }}</a>
-                                </div>
-                                <div class="col-md-4">
-                                    <a class="w-100 border-radius-11 size15 text-gray btn-onecheck text-decoration-none mb-2 mt-2" mat-raised-button (click)="abrirSide()">{{ data.seccion5.texto_boton_2 }}</a>
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="seccion6-onecheck pt-50 pb-50" *ngIf="data.seccion6">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-7" data-aos="fade-down-left" data-aos-anchor-placement="top-center" data-aos-duration="1200">
-                        <div class="row justify-content-end mb-2">
-                            <ng-container *ngFor="let beneficio of data.seccion6.beneficios">
-                                <div class="beneficio d-flex p-2 m-1 card-zoom">
-                                    <img class="img-fluid d-inline-block float-left mr-2" [src]="beneficio.icono" alt="Implementación">
-                                    <p class="size18 font-weight-700 line-height-22 letter-spacing-05 text-gray d-flex align-self-center mb-0">{{ beneficio.texto }}</p>
-                                </div>
-                            </ng-container>
-                        </div>
-                    </div>
-                    <div class="col-md-5 my-auto" data-aos="fade-down-right" data-aos-anchor-placement="top-center" data-aos-duration="1200">
-                        <p class="size32 text-gray letter-spacing-097 line-height-36" [innerHTML]="data.seccion6.descripcion | safeHtml: 'html'"></p>
-                        <a *ngIf="data.seccion6.url_boton" mat-raised-button class="text-decoration-none btn-onecheck-fill size15 border-radius-11 font-weight-300" [href]="data.seccion6.url_boton" target="_blank">{{ data.seccion6.texto_boton }}</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="seccion7-onecheck pt-50 pb-50">
-            <div class="container-fluid pt-50" *ngIf="data.seccion7">
-                <div class="row" data-aos="fade-down" data-aos-anchor-placement="top-center" data-aos-duration="1200">
-                    <div class="col-md-12">
-                        <h2 class="size35 font-weight-700 letter-spacing-097 line-height-46 text-orange-onecheck text-center ubuntu mb-4"><img [src]="data.seccion7.icono"> {{data.seccion7.titulo}}</h2>
-                        <owl-carousel-o [options]="customOptions">
-                            <ng-container *ngFor="let galeria of data.seccion7.galeria">
-                              <ng-template carouselSlide [id]="galeria.id">
-                                <img [src]="galeria.url" alt="logos" title="clientes">
-                              </ng-template>
-                            </ng-container>
-                        </owl-carousel-o>
-                    </div>
-                </div>
-            </div>
-            <div class="container mt-5 pt-3" *ngIf="data.seccion8">
-                <div class="row" data-aos="fade-down" data-aos-anchor-placement="top-center" data-aos-duration="1200">
-                    <div class="col-md-12">
-                        <div class="bg-orange-onecheck border-radius-30 p-5 box-shadow-0-2-24">
-                            <h2 class="text-center text-white size25 font-weight-700 letter-spacing-071 line-height-29">{{ data.seccion8.titulo }}</h2>
-                            <p class="size19 letter-spacing-091 line-height-29 text-white text-center font-weight-300" [innerHTML]="data.seccion8.descripcion | safeHtml: 'html'"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="precios" class="container mt-5 pt-3" *ngIf="data.seccion9">
-                <div class="row">
-                    <div class="col-md-6" data-aos="fade-down-left" data-aos-anchor-placement="top-center" data-aos-duration="1200">
-                        <img class="img-fluid" [src]="data.seccion9.imagen" alt="Solución Eficaz" />
-                    </div>
-                    <div class="col-md-6 my-auto" data-aos="fade-down-right" data-aos-anchor-placement="top-center" data-aos-duration="1200">
-                        <h3 class="ubuntu text-orange-onecheck font-weight-700 size22 letter-spacing-071 line-height-32 mb-0">{{ data.seccion9.titulo }}</h3>
-                        <p class="text-black-intrack size22 letter-spacing-071 line-height-32" [innerHTML]="data.seccion9.descripcion | safeHtml: 'html'"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bg-white pt-5 pb-5" *ngIf="data.seccion10">
-            <div style="background:url('{{ data.seccion10.icono_fondo_1 }}');background-repeat: no-repeat;background-position: left top;margin-top:-60px">
-                <div style="background:url('{{ data.seccion10.icono_fondo_2 }}');background-repeat: no-repeat;background-position: right;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <img class="img-fluid mx-auto d-block mb-2" [src]="data.seccion10.imagen" alt="Logo Smartsuite">
-                                <h4 class="text-center text-gray letter-spacing-009 line-height-24" [innerHTML]="data.seccion10.descripcion | safeHtml: 'html'"></h4>
-                                <a class="mx-auto w-20 d-block border-radius-25 size15 btn-onecheck-fill2 text-decoration-none" mat-raised-button [href]="data.seccion10.url_boton" target="_blank">{{ data.seccion10.texto_boton }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <app-animate-contacto></app-animate-contacto>
+      </div>
     </div>
-    <app-sidebar></app-sidebar>
+    <div class="seccion4-onecheck">
+      <div class="container">
+        <ngx-skeleton-loader
+          class="d-flex pt-3"
+          count="1"
+          *ngIf="loader"
+          animation="progress"
+          appearance="circle"
+          [theme]="{ width: '100%', height: '250px', 'border-radius': '10px' }"
+        ></ngx-skeleton-loader>
+        <div
+          class="row pt-100"
+          id="funcionalidades"
+          *ngIf="data.seccion3 && !loader"
+        >
+          <div
+            class="col-md-4 my-auto"
+            data-aos="fade-down-left"
+            data-aos-anchor-placement="top-center"
+            data-aos-duration="1200"
+          >
+            <p
+              class="text-gray letter-spacing-043n line-height-36 size28"
+              [innerHTML]="data.seccion3.descripcion | safeHtml: 'html'"
+            ></p>
+          </div>
+          <div
+            class="col-md-8"
+            data-aos="fade-down-right"
+            data-aos-anchor-placement="top-center"
+            data-aos-duration="1200"
+          >
+            <div class="back-rombo">
+              <div class="row">
+                <ng-container
+                  *ngFor="
+                    let funcion of data.seccion3.funcionalidades;
+                    let i = index;
+                    let last = last
+                  "
+                >
+                  <div
+                    class="col-md-4 funItem2"
+                    *ngIf="funcion.descripcion"
+                    [ngClass]="{ 'offset-md-4': last }"
+                  >
+                    <mat-card
+                      class="card-zoom tarjetas-soluciones border-radius-60 mb-3"
+                    >
+                      <img
+                        class="mb-1 d-block mx-auto img-fluid"
+                        [src]="funcion.icono"
+                        alt="Icono 1"
+                      />
+                      <mat-card-content>
+                        <p
+                          class="size14 line-height-20 letter-spacing-03n text-center text-gray"
+                          [innerHTML]="funcion.descripcion"
+                        ></p>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-5">
+        <div class="row">
+          <div
+            class="col-md-12 mb-4"
+            data-aos="fade-top"
+            data-aos-anchor-placement="top-center"
+            data-aos-duration="1000"
+          >
+            <h2
+              class="size32 text-center ubuntu letter-spacing-1-28 line-height-36 mb-0"
+              [innerHTML]="data.seccion4.titulo | safeHtml: 'html'"
+            ></h2>
+          </div>
+          <ng-container *ngFor="let gestion of data.seccion4.gestion_de_rondas">
+            <div
+              class="col"
+              data-aos="fade-down"
+              data-aos-anchor-placement="top-center"
+              data-aos-duration="1200"
+            >
+              <img
+                class="img-fluid d-block mx-auto mb-3"
+                [src]="gestion.icono"
+                alt="Funcionalidad"
+              />
+              <p
+                class="text-center font-weight-500 size14 letter-spacing-05 line-height-20 text-black-intrack"
+                [innerHTML]="gestion.descripcion | safeHtml: 'html'"
+              ></p>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="seccion5-onecheck">
+        <div class="container">
+          <div class="row">
+            <div
+              class="col-md-5"
+              data-aos="fade-down-left"
+              data-aos-anchor-placement="top-center"
+              data-aos-duration="1200"
+            >
+              <img
+                class="img-fluid d-block mx-auto mb-3"
+                [src]="data.seccion5.imagen"
+                alt="Gestión"
+              />
+            </div>
+            <div
+              class="col-md-7 my-auto"
+              data-aos="fade-down-right"
+              data-aos-anchor-placement="top-center"
+              data-aos-duration="1200"
+            >
+              <p
+                class="text-black-intrack size30 letter-spacing-069 line-height-42"
+                [innerHTML]="data.seccion5.titulo | safeHtml: 'html'"
+              ></p>
+              <div class="row">
+                <div class="col-md-4">
+                  <a
+                    class="w-100 border-radius-11 btn-onecheck-fill2 size15 text-decoration-none mb-2 mt-2"
+                    mat-raised-button
+                    [href]="data.seccion5.url_boton_1"
+                    target="_blank"
+                    >{{ data.seccion5.texto_boton_1 }}</a
+                  >
+                </div>
+                <div class="col-md-4">
+                  <a
+                    class="w-100 border-radius-11 size15 text-gray btn-onecheck text-decoration-none mb-2 mt-2"
+                    mat-raised-button
+                    (click)="abrirSide()"
+                    >{{ data.seccion5.texto_boton_2 }}</a
+                  >
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="seccion6-onecheck pt-50 pb-50" *ngIf="data.seccion6">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-md-7"
+            data-aos="fade-down-left"
+            data-aos-anchor-placement="top-center"
+            data-aos-duration="1200"
+          >
+            <div class="row justify-content-end mb-2">
+              <ng-container *ngFor="let beneficio of data.seccion6.beneficios">
+                <div class="beneficio d-flex p-2 m-1 card-zoom">
+                  <img
+                    class="img-fluid d-inline-block float-left mr-2"
+                    [src]="beneficio.icono"
+                    alt="Implementación"
+                  />
+                  <p
+                    class="size18 font-weight-700 line-height-22 letter-spacing-05 text-gray d-flex align-self-center mb-0"
+                  >
+                    {{ beneficio.texto }}
+                  </p>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div
+            class="col-md-5 my-auto"
+            data-aos="fade-down-right"
+            data-aos-anchor-placement="top-center"
+            data-aos-duration="1200"
+          >
+            <p
+              class="size32 text-gray letter-spacing-097 line-height-36"
+              [innerHTML]="data.seccion6.descripcion | safeHtml: 'html'"
+            ></p>
+            <a
+              *ngIf="data.seccion6.url_boton"
+              mat-raised-button
+              class="text-decoration-none btn-onecheck-fill size15 border-radius-11 font-weight-300"
+              [href]="data.seccion6.url_boton"
+              target="_blank"
+              >{{ data.seccion6.texto_boton }}</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="seccion7-onecheck pt-50 pb-50">
+      <div class="container-fluid pt-50" *ngIf="data.seccion7">
+        <div
+          class="row"
+          data-aos="fade-down"
+          data-aos-anchor-placement="top-center"
+          data-aos-duration="1200"
+        >
+          <div class="col-md-12">
+            <h2
+              class="size35 font-weight-700 letter-spacing-097 line-height-46 text-orange-onecheck text-center ubuntu mb-4"
+            >
+              <img [src]="data.seccion7.icono" /> {{ data.seccion7.titulo }}
+            </h2>
+            <div class="d-flex flex-wrap" style="gap: 13px">
+              <ng-container *ngFor="let galeria of data.seccion7.galeria">
+                <div
+                  class="bg-white rounded grayscale"
+                  style="
+                    width: 150px;
+                    height: 150px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                  "
+                  [id]="galeria.id"
+                  [ngStyle]="{ 'background-image': 'url(' + galeria.url + ')' }"
+                  (mouseenter)="colocarColor(galeria.id)"
+                  (mouseleave)="colocarColor(galeria.id)"
+                ></div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-5 pt-3" *ngIf="data.seccion8">
+        <div
+          class="row"
+          data-aos="fade-down"
+          data-aos-anchor-placement="top-center"
+          data-aos-duration="1200"
+        >
+          <div class="col-md-12">
+            <div
+              class="bg-orange-onecheck border-radius-30 p-5 box-shadow-0-2-24"
+            >
+              <h2
+                class="text-center text-white size25 font-weight-700 letter-spacing-071 line-height-29"
+              >
+                {{ data.seccion8.titulo }}
+              </h2>
+              <p
+                class="size19 letter-spacing-091 line-height-29 text-white text-center font-weight-300"
+                [innerHTML]="data.seccion8.descripcion | safeHtml: 'html'"
+              ></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="precios" class="container mt-5 pt-3" *ngIf="data.seccion9">
+        <div class="row">
+          <div
+            class="col-md-6"
+            data-aos="fade-down-left"
+            data-aos-anchor-placement="top-center"
+            data-aos-duration="1200"
+          >
+            <img
+              class="img-fluid"
+              [src]="data.seccion9.imagen"
+              alt="Solución Eficaz"
+            />
+          </div>
+          <div
+            class="col-md-6 my-auto"
+            data-aos="fade-down-right"
+            data-aos-anchor-placement="top-center"
+            data-aos-duration="1200"
+          >
+            <h3
+              class="ubuntu text-orange-onecheck font-weight-700 size22 letter-spacing-071 line-height-32 mb-0"
+            >
+              {{ data.seccion9.titulo }}
+            </h3>
+            <p
+              class="text-black-intrack size22 letter-spacing-071 line-height-32"
+              [innerHTML]="data.seccion9.descripcion | safeHtml: 'html'"
+            ></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white pt-5 pb-5" *ngIf="data.seccion10">
+      <div
+        style="background:url('{{
+          data.seccion10.icono_fondo_1
+        }}');background-repeat: no-repeat;background-position: left top;margin-top:-60px"
+      >
+        <div
+          style="background:url('{{
+            data.seccion10.icono_fondo_2
+          }}');background-repeat: no-repeat;background-position: right;"
+        >
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <img
+                  class="img-fluid mx-auto d-block mb-2"
+                  [src]="data.seccion10.imagen"
+                  alt="Logo Smartsuite"
+                />
+                <h4
+                  class="text-center text-gray letter-spacing-009 line-height-24"
+                  [innerHTML]="data.seccion10.descripcion | safeHtml: 'html'"
+                ></h4>
+                <a
+                  class="mx-auto w-20 d-block border-radius-25 size15 btn-onecheck-fill2 text-decoration-none"
+                  mat-raised-button
+                  [href]="data.seccion10.url_boton"
+                  target="_blank"
+                  >{{ data.seccion10.texto_boton }}</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-animate-contacto></app-animate-contacto>
+  </div>
+  <app-sidebar></app-sidebar>
 </div>
